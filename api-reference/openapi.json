@@ -19,6 +19,83 @@
     }
   ],
   "paths": {
+    "/warehouses": {
+      "get": {
+        "description": "Returns all warehouses from the system that the user has access to",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of results to return",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Warehouse response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Warehouse"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Creates a new internal source warehouse",
+        "requestBody": {
+          "description": "Internal warehouse to initialize",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewWarehouse"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Warehouse response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Warehouse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/exports": {
       "get": {
         "description": "Returns all exports from the system that the user has access to",
@@ -41,7 +118,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Plant"
+                    "$ref": "#/components/schemas/Export"
                   }
                 }
               }
@@ -74,7 +151,7 @@
         },
         "responses": {
           "200": {
-            "description": "export response",
+            "description": "Export response",
             "content": {
               "application/json": {
                 "schema": {
@@ -84,7 +161,7 @@
             }
           },
           "400": {
-            "description": "unexpected error",
+            "description": "Unexpected error",
             "content": {
               "application/json": {
                 "schema": {
@@ -99,41 +176,104 @@
   },
   "components": {
     "schemas": {
-      "Export": {
+      "Warehouse": {
         "required": [
-          "name"
+          "name",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "Unique identifier for the warehouse",
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "description": "The name of the warehouse",
+            "type": "string"
+          },
+          "type": {
+            "description": "The type of warehouse (e.g., Snowflake, Redshift, BigQuery)",
+            "type": "string"
+          },
+          "config": {
+            "description": "Warehouse-specific configuration",
+            "type": "object"
+          }
+        }
+      },
+      "NewWarehouse": {
+        "required": [
+          "name",
+          "type",
+          "config"
         ],
         "type": "object",
         "properties": {
           "name": {
-            "description": "The name of the plant",
+            "description": "The name of the warehouse",
             "type": "string"
           },
-          "tag": {
-            "description": "Tag to specify the type",
+          "type": {
+            "description": "The type of warehouse (e.g., Snowflake, Redshift, BigQuery)",
             "type": "string"
+          },
+          "config": {
+            "description": "Warehouse-specific configuration",
+            "type": "object"
           }
         }
       },
-      "NewPlant": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/Export"
+      "Export": {
+        "required": [
+          "name",
+          "sourceWarehouseId",
+          "destinationWarehouseId"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "Unique identifier for the export",
+            "type": "string",
+            "format": "uuid"
           },
-          {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "description": "Identification number of the plant",
-                "type": "integer",
-                "format": "int64"
-              }
-            }
+          "name": {
+            "description": "The name of the export",
+            "type": "string"
+          },
+          "sourceWarehouseId": {
+            "description": "ID of the source warehouse",
+            "type": "string",
+            "format": "uuid"
+          },
+          "destinationConfig": {
+            "description": "Export-specific configuration",
+            "type": "object"
           }
-        ]
+        }
+      },
+      "NewExport": {
+        "required": [
+          "name",
+          "sourceWarehouseId", 
+          "destinationConfig"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "The name of the export",
+            "type": "string"
+          },
+          "sourceWarehouseId": {
+            "description": "ID of the source warehouse",
+            "type": "string",
+            "format": "uuid"
+          },
+          "destinationConfig": {
+            "description": "Export-specific configuration",
+            "type": "object"
+          }
+        }
       },
       "Error": {
         "required": [

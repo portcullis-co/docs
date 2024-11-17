@@ -78,8 +78,15 @@
       "group": "Exports",
       "pages": [
         "api-reference/exports/get",
-        "api-reference/exports/create",
-        "api-reference/exports/delete"
+        "api-reference/exports/create"
+      ]
+    },
+    {
+      "group": "Warehouses",
+      "pages": [
+        "api-reference/warehouses/get",
+        "api-reference/warehouses/create",
+        "api-reference/warehouses/delete"
       ]
     }
   ],
