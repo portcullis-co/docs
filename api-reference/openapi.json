@@ -21,7 +21,10 @@
   "paths": {
     "/warehouses": {
       "get": {
+        "operationId": "getWarehouses",
+        "summary": "Get all warehouses",
         "description": "Returns all warehouses from the system that the user has access to",
+        "tags": ["Warehouses"],
         "parameters": [
           {
             "name": "limit",
@@ -30,6 +33,14 @@
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          },
+          {
+            "name": "organization",
+            "in": "query",
+            "description": "Unique identifier for your organization",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -60,7 +71,28 @@
         }
       },
       "post": {
+        "operationId": "createWarehouse",
+        "summary": "Create a warehouse",
         "description": "Creates a new internal source warehouse",
+        "tags": ["Warehouses"],
+        "parameters": [
+          {
+            "name": "organization",
+            "in": "query",
+            "description": "Unique identifier for your organization",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "Warehouse type of the export",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "description": "Internal warehouse to initialize",
           "content": {
@@ -98,7 +130,10 @@
     },
     "/exports": {
       "get": {
+        "operationId": "getExports",
+        "summary": "Get all exports",
         "description": "Returns all exports from the system that the user has access to",
+        "tags": ["Exports"],
         "parameters": [
           {
             "name": "limit",
@@ -137,7 +172,10 @@
         }
       },
       "post": {
+        "operationId": "createExport",
+        "summary": "Create an export",
         "description": "Creates a new export to an external warehouse",
+        "tags": ["Exports"],
         "requestBody": {
           "description": "Export and destination to initiate",
           "content": {
@@ -178,7 +216,7 @@
     "schemas": {
       "Warehouse": {
         "required": [
-          "name",
+          "organization",
           "type"
         ],
         "type": "object",
@@ -188,47 +226,42 @@
             "type": "string",
             "format": "uuid"
           },
-          "name": {
-            "description": "The name of the warehouse",
+          "organization": {
+            "description": "Unique identifier for your organization",
             "type": "string"
           },
           "type": {
-            "description": "The type of warehouse (e.g., Snowflake, Redshift, BigQuery)",
+            "description": "Type of warehouse",
             "type": "string"
-          },
-          "config": {
-            "description": "Warehouse-specific configuration",
-            "type": "object"
           }
         }
       },
       "NewWarehouse": {
         "required": [
-          "name",
-          "type",
-          "config"
+          "organization",
+          "table_name",
+          "internal_credentials"
         ],
         "type": "object",
         "properties": {
-          "name": {
-            "description": "The name of the warehouse",
+          "organization": {
+            "description": "Unique identifier for your organization",
             "type": "string"
           },
-          "type": {
-            "description": "The type of warehouse (e.g., Snowflake, Redshift, BigQuery)",
+          "table_name": {
+            "description": "Name of the table that is being linked for exports",
             "type": "string"
           },
-          "config": {
-            "description": "Warehouse-specific configuration",
+          "internal_credentials": {
+            "description": "Internal warehouse-specific connection configurations",
             "type": "object"
           }
         }
       },
       "Export": {
         "required": [
-          "name",
-          "sourceWarehouseId",
-          "destinationWarehouseId"
+          "internal_warehouse",
+          "organization"
         ],
         "type": "object",
         "properties": {
@@ -237,41 +270,43 @@
             "type": "string",
             "format": "uuid"
           },
-          "name": {
-            "description": "The name of the export",
+          "type": {
+            "description": "Warehouse type of the export",
             "type": "string"
           },
-          "sourceWarehouseId": {
-            "description": "ID of the source warehouse",
+          "internal_warehouse": {
+            "description": "Unique identifier for your internal warehouse",
             "type": "string",
             "format": "uuid"
           },
-          "destinationConfig": {
-            "description": "Export-specific configuration",
-            "type": "object"
+          "organization": {
+            "description": "Unique identifier for your organization",
+            "type": "string",
+            "format": "uuid"
           }
         }
       },
       "NewExport": {
         "required": [
-          "name",
-          "sourceWarehouseId", 
-          "destinationConfig"
+          "internal_warehouse",
+          "type",
+          "organization"
         ],
         "type": "object",
         "properties": {
-          "name": {
-            "description": "The name of the export",
-            "type": "string"
-          },
-          "sourceWarehouseId": {
-            "description": "ID of the source warehouse",
+          "internal_warehouse": {
+            "description": "Unique identifier for your internal warehouse",
             "type": "string",
             "format": "uuid"
           },
-          "destinationConfig": {
-            "description": "Export-specific configuration",
-            "type": "object"
+          "type": {
+            "description": "Warehouse type of the export",
+            "type": "string"
+          },
+          "organization": {
+            "description": "Unique identifier for your organization",
+            "type": "string",
+            "format": "uuid"
           }
         }
       },

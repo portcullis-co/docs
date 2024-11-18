@@ -33,14 +33,14 @@
   ],
   "anchors": [
     {
-      "name": "Documentation",
-      "icon": "book-open-cover",
-      "url": "https://mintlify.com/docs"
+      "name": "Get an API Key",
+      "icon": "key",
+      "url": "https://www.runportcullis.co/get-started"
     },
     {
-      "name": "Community",
-      "icon": "slack",
-      "url": "https://mintlify.com/community"
+      "name": "Concepts",
+      "icon": "lightbulb",
+      "url": "http://localhost:3000/concepts/overview"
     },
     {
       "name": "Blog",
@@ -50,22 +50,26 @@
   ],
   "navigation": [
     {
-      "group": "Get Started",
+      "group": "Introduction",
       "pages": [
-        "introduction",
-        "quickstart",
-        "development"
+        "introduction/welcome",
+        "introduction/build-vs-buy"
       ]
     },
     {
-      "group": "Essentials",
+      "group": "Concepts",
       "pages": [
-        "essentials/markdown",
-        "essentials/code",
-        "essentials/images",
-        "essentials/settings",
-        "essentials/navigation",
-        "essentials/reusable-snippets"
+        "concepts/what-is-embedded-etl",
+        "concepts/benefits-of-api-first",
+        "concepts/common-use-cases"
+      ]
+    },
+    {
+      "group": "Security",
+      "pages": [
+        "security/aes-encryption",
+        "security/rls",
+        "security/credentials"
       ]
     },
     {
@@ -92,7 +96,7 @@
   ],
   "footerSocials": {
     "x": "https://x.com/mintlify",
-    "github": "https://github.com/mintlify",
+    "github": "https://github.com/portcullis-co",
     "linkedin": "https://linkedin.com/company/mintlify"
   }
 }
