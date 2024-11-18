@@ -1,4 +1,54 @@
 ---
-title: 'Benefits of API first'
-description: 'Learn more about our export features'
+title: 'API-first Embedded ETL'
+description: 'Learn why our approach to embedded ETL allows more flexibility via an API-first approach'
 ---
+
+## The Traditional ETL Challenge
+
+Traditional embedded ETL (Extract, Transform, Load) solutions often come with rigid architectures that limit developer flexibility. These monolithic approaches typically:
+
+- Lock developers into predefined data transformation workflows
+- Require extensive configuration for custom integrations
+- Create significant overhead in adapting to changing data requirements
+
+## Our API-First Approach
+
+Our API-first embedded ETL solution fundamentally reimagines data integration by:
+
+- Providing granular, composable API endpoints for each ETL stage
+- Enabling real-time data transformation and routing
+- Supporting complex, dynamic data pipelines through programmable interfaces
+
+### Key Advantages
+
+1. **Flexible Integration**
+   Developers can seamlessly integrate ETL processes into their existing infrastructure, with minimal friction and maximum control.
+
+2. **Programmable Workflows**
+   Create custom data transformation logic using simple, RESTful API calls that adapt to your specific business needs.
+
+3. **Performance-Optimized**
+   Lightweight API design ensures minimal latency and high-throughput data processing.
+
+## Getting Started
+
+```javascript
+// Simple export example
+const options = {
+  method: 'POST',
+  headers: {Authorization: 'Bearer <token>', 'Content-Type': 'application/json'},
+  body: '{"internal_warehouse":"3c90c3cc-0d44-4b50-8888-8dd25736052a","type":"<string>","organization":"3c90c3cc-0d44-4b50-8888-8dd25736052a"}'
+};
+
+fetch('http://app.runportcullis.co/exports', options)
+  .then(response => response.json())
+  .then(response => console.log(response))
+  .catch(err => console.error(err));
+```
+
+## Use Cases
+
+- Microservice architectures
+- Product analytics platforms
+- Complex enterprise data integration scenarios
+- Embedded logs exports

@@ -1,0 +1,30 @@
+---
+title: 'Authentication'
+description: 'Learn how to authenticate to use the Portcullis API'
+---
+
+The Portcullis API requires an API key to identify and authorise calls. API keys are associated with a single Portcullis account. You can have more than key at any point in time.
+
+Those keys are able to authenticate to Hyperline and perform actions on your account so it’s important that you keep them safe in the same way that you would a password.
+
+## Manage API keys
+
+### Request an API key
+
+Getting an **API key** is very simple and allow you to use Portcullis's API. If you don't have one, [schedule a demo](https://www.runportcullis.co/get-started) with our team.
+
+## Using your credentials
+
+API keys or access tokens must be provided with every API call, specified in the Authorization header after a Bearer prefix. All requests happen using HTTPS.
+
+For example:
+
+```
+curl -H "Authorization: Bearer <API key or access token>" https://app.runportcullis.co/exports
+```
+
+## Keeping your data safe
+
+Your API keys should be treated as **highly sensitive information** - think of a token like a password. You should only give tokens to services you fully trust.
+
+If leaked, tokens could be used maliciously - they can provide someone with access to all of your Portcullis data. If you suspect a token has been compromised, revoke it and replace it with a new one.

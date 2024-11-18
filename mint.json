@@ -38,14 +38,9 @@
       "url": "https://www.runportcullis.co/get-started"
     },
     {
-      "name": "Concepts",
-      "icon": "lightbulb",
-      "url": "http://localhost:3000/concepts/overview"
-    },
-    {
       "name": "Blog",
       "icon": "newspaper",
-      "url": "https://mintlify.com/blog"
+      "url": "https://www.runportcullis.co/blog"
     }
   ],
   "navigation": [
@@ -60,8 +55,7 @@
       "group": "Concepts",
       "pages": [
         "concepts/what-is-embedded-etl",
-        "concepts/benefits-of-api-first",
-        "concepts/common-use-cases"
+        "concepts/benefits-of-api-first"
       ]
     },
     {
@@ -75,7 +69,15 @@
     {
       "group": "API Documentation",
       "pages": [
-        "api-reference/introduction"
+        "api-reference/introduction",
+        "api-reference/authentication"
+      ]
+    },
+    {
+      "group": "Integrations",
+      "pages": [
+        "api-reference/integrations/supported-warehouses",
+        "api-reference/integrations/webhooks"
       ]
     },
     {

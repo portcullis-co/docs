@@ -1,106 +1,57 @@
 ---
 title: 'Build vs. Buy'
-description: 'Preview changes locally to update your docs'
+description: 'Why you may want to trust embedded ETL to a third-party'
 ---
 
-<Info>
-  **Prerequisite**: Please install Node.js (version 19 or higher) before proceeding.
-</Info>
+So your customers are asking for data export? At this point, many engineering teams face a critical decision: should we build our own Extract, Transform, Load (ETL) solution or buy an existing third-party service?
 
-Follow these steps to install and run Mintlify on your operating system:
+## The Hidden Complexity of Data Export
 
-**Step 1**: Install Mintlify:
+Building a custom ETL solution might seem straightforward, but it's far more complex than most teams anticipate:
 
-<CodeGroup>
+- Infrastructure Challenges: Handling large data volumes, ensuring performance, and managing scalable data pipelines requires significant engineering expertise.
+- Security Considerations: Implementing robust data encryption, access controls, and compliance with regulations like GDPR and CCPA demands extensive security knowledge.
+- Ongoing Maintenance: ETL systems need constant updates to support new data sources, handle schema changes, and address emerging security vulnerabilities.
 
-  ```bash npm
-  npm i -g mintlify
-  ```
+## Advantages of Using a Third-Party ETL Service
 
-```bash yarn
-yarn global add mintlify
-```
+1. Reduced Engineering Overhead
+Leveraging an existing solution allows your team to focus on core product features instead of reinventing complex data infrastructure.
+2. Immediate Scalability
+Professional ETL services are designed to handle massive data volumes and diverse integration scenarios out of the box.
+3. Comprehensive Security
+Third-party providers invest heavily in security, offering enterprise-grade protection that would be prohibitively expensive to develop internally.
+4. Faster Time to Market
 
-</CodeGroup>
+With a pre-built solution, you can offer data export capabilities to customers in weeks instead of months.
 
-**Step 2**: Navigate to the docs directory (where the `mint.json` file is located) and execute the following command:
+## When to Build vs. When to Buy
 
-```bash
-mintlify dev
-```
+Consider Building If:
 
-A local preview of your documentation will be available at `http://localhost:3000`.
+You have extremely unique data requirements
+Your data volumes are truly exceptional
+You have dedicated, specialized ETL engineering resources
 
-### Custom Ports
+Consider Buying If:
 
-By default, Mintlify uses port 3000. You can customize the port Mintlify runs on by using the `--port` flag. To run Mintlify on port 3333, for instance, use this command:
+You want to ship features quickly
+Your team lacks specialized ETL expertise
+You need standard data integration patterns
+Cost-effectiveness is a priority
 
-```bash
-mintlify dev --port 3333
-```
+## Cost Comparison
 
-If you attempt to run Mintlify on a port that's already in use, it will use the next available port:
+While building might seem cheaper initially, the true cost includes:
 
-```md
-Port 3000 is already in use. Trying 3001 instead.
-```
+- Initial development time
+- Ongoing maintenance
+- Security updates
+- Performance optimization
+- Scaling infrastructure
 
-## Mintlify Versions
+A third-party solution often proves more economical when these factors are considered.
 
-Please note that each CLI release is associated with a specific version of Mintlify. If your local website doesn't align with the production version, please update the CLI:
+## Conclusion
 
-<CodeGroup>
-
-```bash npm
-npm i -g mintlify@latest
-```
-
-```bash yarn
-yarn global upgrade mintlify
-```
-
-</CodeGroup>
-
-## Validating Links
-
-The CLI can assist with validating reference links made in your documentation. To identify any broken links, use the following command:
-
-```bash
-mintlify broken-links
-```
-
-## Deployment
-
-<Tip>
-  Unlimited editors available under the [Pro
-  Plan](https://mintlify.com/pricing) and above.
-</Tip>
-
-If the deployment is successful, you should see the following:
-
-<Frame>
-  <img src="/images/checks-passed.png" style={{ borderRadius: '0.5rem' }} />
-</Frame>
-
-## Code Formatting
-
-We suggest using extensions on your IDE to recognize and format MDX. If you're a VSCode user, consider the [MDX VSCode extension](https://marketplace.visualstudio.com/items?itemName=unifiedjs.vscode-mdx) for syntax highlighting, and [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) for code formatting.
-
-## Troubleshooting
-
-<AccordionGroup>
-  <Accordion title='Error: Could not load the "sharp" module using the darwin-arm64 runtime'>
-
-    This may be due to an outdated version of node. Try the following:
-    1. Remove the currently-installed version of mintlify: `npm remove -g mintlify`
-    2. Upgrade to Node v19 or higher.
-    3. Reinstall mintlify: `npm install -g mintlify`
-  </Accordion>
-
-  <Accordion title="Issue: Encountering an unknown error">
-  
-    Solution: Go to the root of your device and delete the \~/.mintlify folder. Afterwards, run `mintlify dev` again.
-  </Accordion>
-</AccordionGroup>
-
-Curious about what changed in the CLI version? [Check out the CLI changelog.](https://www.npmjs.com/package/mintlify?activeTab=versions)
+For most teams, a third-party embedded ETL solution represents the most pragmatic path. It allows you to deliver robust data export capabilities while keeping your engineering team focused on your core product value.
